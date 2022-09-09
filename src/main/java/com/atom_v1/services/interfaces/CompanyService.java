@@ -6,19 +6,21 @@ import java.util.List;
 
 public interface CompanyService {
 
-    List<MasterCompany> getAllCompanies();
+    List<Company> getAllCompanies();
 
-    MasterCompany getCompanyById(Long id);
+    Company getCompanyById(Long id);
 
-    MasterCompany getCompanyByOffer(Offer offer);
+    Company getCompanyByOfferId(Long id);
 
-    List<MasterCompany> getCompaniesByUser(User user);
+    List<Company> getCompaniesByUserId(Long id);
 
-    List<MasterCompany> getCompaniesByCategory(Category category);
+    List<Company> getCompaniesByCategoryId(Long id);
 
-    List<MasterCompany> getCompaniesByLocation(Location location);
+    List<Company> getCompaniesByLocationId(Long id);
 
-    void createCompany(MasterCompany company);
+    String createCompany(Company company);
 
-    void deleteCompany(MasterCompany company);
+    String deleteCompany(Long id);
+
+     List<Company> findCompaniesByName(String name);
 }

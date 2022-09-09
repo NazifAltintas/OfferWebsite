@@ -10,13 +10,13 @@ public interface CategoryService {
 
     Category getCategoryById(Long id);
 
-    Category getCategoryByTask(Task task);
+    Category getCategoryByTaskId(Long id);
 
-    List<Category> getCategoriesByLocation(Location location);
+    List<Category> getCategoriesByLocationName(String locationName);
 
-    List<Category> getCategoriesByCompany(MasterCompany company);
+    List<Category> getCategoriesByCompanyName(String companyName);
 
-    void createCategory(Category category);
+    String createCategory(Category category);
 
-    void deleteCategory(Category category);
+    String deleteCategoryById(Long id);
 }

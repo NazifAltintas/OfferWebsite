@@ -4,56 +4,57 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "user_addresses")
 public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long addressId;
+    private Long id;
+
+    @Column(nullable = false, length = 30)
     private String street;
-    private int houseNr;
-    private int bus;
-    private int ZIP;
+
+    @Column(nullable = false, length = 4)
+    private Integer houseNr;
+
+    @Column(nullable = false, length = 4)
+    private Integer box;
+
+    @Column(nullable = false, length = 4)
+    private Integer ZIP;
+
+    @Column(nullable = false, length = 15)
     private String city;
+
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private User user;
-    private MasterCompany company;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Company company;
+
     private String errMsg;
 
     public Address() {
-        this("",-1,-1,"",null);
-        this.errMsg="invalid address";
+        this.errMsg = "invalid address";
     }
 
-    public Address(String street, int houseNr, int ZIP, String city, User user) {
-        this(street,houseNr,0,ZIP,city,user);
+    public Address(String street, Integer houseNr, Integer ZIP, String city) {
 
-
-    }
-
-    public Address(String street, int houseNr, int ZIP, String city, User user, MasterCompany company) {
-        this(street,houseNr,0,ZIP,city,user,company);
-
-    }
-
-    public Address(String street, int houseNr, int bus, int ZIP, String city, User user) {
         this.street = street;
         this.houseNr = houseNr;
-        this.bus = bus;
         this.ZIP = ZIP;
         this.city = city;
-        this.user = user;
-        this.errMsg="address is created successfully";
+        this.errMsg = "address is created successfully";
+
     }
 
-    public Address(String street, int houseNr, int bus, int ZIP, String city, User user, MasterCompany company) {
+    public Address(String street, Integer houseNr, Integer box, Integer ZIP, String city) {
         this.street = street;
         this.houseNr = houseNr;
-        this.bus = bus;
+        this.box = box;
         this.ZIP = ZIP;
         this.city = city;
-        this.user = user;
-        this.company = company;
-        this.errMsg="address is created successfully";
+        this.errMsg = "address is created successfully";
     }
 
     public String getStreet() {
@@ -64,27 +65,27 @@ public class Address {
         this.street = street;
     }
 
-    public int getHouseNr() {
+    public Integer getHouseNr() {
         return houseNr;
     }
 
-    public void setHouseNr(int houseNr) {
+    public void setHouseNr(Integer houseNr) {
         this.houseNr = houseNr;
     }
 
-    public int getBus() {
-        return bus;
+    public Integer getBox() {
+        return box;
     }
 
-    public void setBus(int bus) {
-        this.bus = bus;
+    public void setBox(Integer box) {
+        this.box = box;
     }
 
-    public int getZIP() {
+    public Integer getZIP() {
         return ZIP;
     }
 
-    public void setZIP(int ZIP) {
+    public void setZIP(Integer ZIP) {
         this.ZIP = ZIP;
     }
 
@@ -104,24 +105,32 @@ public class Address {
         this.user = user;
     }
 
-    public MasterCompany getCompany() {
+    public Company getCompany() {
         return company;
     }
 
-    public void setCompany(MasterCompany company) {
+    public void setCompany(Company company) {
         this.company = company;
     }
 
-    public Long getAddressId() {
-        return addressId;
+    public String getErrMsg() {
+        return errMsg;
+    }
+
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     @Override
     public String toString() {
-        return   street.substring(0,1).toUpperCase()+street.substring(1).toLowerCase() + ' ' +
+        return street.substring(0, 1).toUpperCase() + street.substring(1).toLowerCase() + ' ' +
                 houseNr +
-                "\\" + bus +
+                "\\" + box +
                 ", " + ZIP +
-                " " + city.substring(0,1).toUpperCase()+city.substring(1).toLowerCase();
+                " " + city.substring(0, 1).toUpperCase() + city.substring(1).toLowerCase();
     }
 }

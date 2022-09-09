@@ -10,12 +10,14 @@ public interface AddressService {
 
     Address getAddressById(Long id);
 
-    List<Address> getAddressesByUser(User user);
+    List<Address> getAddressesByUserEmail(String email);
 
-    List<Address> getAddressesByCompany(MasterCompany company);
+    List<Address> getAddressesByCompanyEmail(String email);
 
-    void createAddress(Address address);
+    String createAddress(Address address);
 
-    void deleteAddress(Address address);
+    String deleteAddressById(Long id);
+
+    Address fullyUpdateAddress(Long id, Address newAddress);
 
 }

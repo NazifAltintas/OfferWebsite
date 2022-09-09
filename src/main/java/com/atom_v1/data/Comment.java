@@ -5,46 +5,63 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "user_comments")
 public class Comment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
-    private User author;
-    private MasterCompany company;
+
+    @Column(length = 300)
     private String content;
+
+    @Column(length = 1)
     private int like;
+
+    @Column
     private Date timeStamp;
 
+    String errMsg;
+
+    @JoinTable(name = "comments_user",
+            joinColumns = {@JoinColumn(name = "comment_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "user_ID")})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private User user;
+
+    @JoinTable(name = "comments_company",
+            joinColumns = {@JoinColumn(name = "comment_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "company_ID")})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Company company;
+
     public Comment() {
-        this(new User(), new MasterCompany(), "");
+        this.errMsg = "invalid comment";
     }
 
-    public Comment(User author, MasterCompany company, String content) {
-        this(author, company, content, 0, new Date());
+    public Comment(String content) {
+        this.content = content;
+        this.errMsg = "comment is created successfully";
     }
 
-    public Comment(User author, MasterCompany company, String content, int like, Date timeStamp) {
-        this.author = author;
-        this.company = company;
+    public Comment(String content, int like) {
         this.content = content;
         this.like = like;
-        this.timeStamp = timeStamp;
+        this.errMsg = "comment is created successfully";
     }
 
-    public User getAuthor() {
-        return author;
+    public User getUser() {
+        return user;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setUser(User author) {
+        this.user = author;
     }
 
-    public MasterCompany getCompany() {
+    public Company getCompany() {
         return company;
     }
 
-    public void setCompany(MasterCompany company) {
+    public void setCompany(Company company) {
         this.company = company;
     }
 
@@ -76,10 +93,18 @@ public class Comment {
         return commentId;
     }
 
+    public String getErrMsg() {
+        return errMsg;
+    }
+
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
+    }
+
     @Override
     public String toString() {
         return "Comment by "
-                + author
+                + user
                 + " about "
                 + company
                 + ", \""

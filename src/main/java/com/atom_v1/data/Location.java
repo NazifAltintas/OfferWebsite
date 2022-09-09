@@ -2,29 +2,65 @@ package com.atom_v1.data;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "task_locations")
+
 public class Location {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long locationId;
+
+    @Column(nullable = false, unique = true, length = 15)
     private String locationName;
-    private List<MasterCompany> companies;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Company> companies;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Category> categories;
+
+    @JoinTable(name = "location_tasks",
+            joinColumns = {@JoinColumn(name = "location_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "task_ID")})
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Task> tasks;
+
+    String errMsg;
+
 
     public Location() {
-        this("");
+        this.errMsg = "invalid location name";
     }
 
     public Location(String locationName) {
-        this(locationName, new ArrayList<>());
+        this.locationName = locationName;
+        this.errMsg = "location is created successfully";
     }
 
-    public Location(String locationName, List<MasterCompany> companies) {
-        this.locationName = locationName;
-        this.companies = companies;
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public String getErrMsg() {
+        return errMsg;
+    }
+
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
     }
 
     public String getLocationName() {
@@ -35,11 +71,11 @@ public class Location {
         this.locationName = locationName;
     }
 
-    public List<MasterCompany> getCompanies() {
+    public List<Company> getCompanies() {
         return companies;
     }
 
-    public void setCompanies(List<MasterCompany> companies) {
+    public void setCompanies(List<Company> companies) {
         this.companies = companies;
     }
 

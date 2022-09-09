@@ -10,15 +10,13 @@ public interface UserService {
 
     User getUserById(Long id);
 
-    User getUserByOffer(Offer offer);
+    User getUserByCommentId(Long id);
 
-    User getUserByComment(Comment comment);
+    User getUserByTaskId(Long id);
 
-    User getUserByTask(Task task);
+    User getUserByCompanyEmail(String email);
 
-    User getUserByCompany(MasterCompany company);
+    String createUser(User user);
 
-    void createUser(User user);
-
-    void deleteUser(User user);
+    String deleteUser(Long id);
 }

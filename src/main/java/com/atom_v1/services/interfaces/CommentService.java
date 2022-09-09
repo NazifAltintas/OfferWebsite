@@ -10,11 +10,11 @@ public interface CommentService {
 
     Comment getCommentById(Long id);
 
-    List<Comment> getCommentsByUser(User user);
+    List<Comment> getCommentsByUserEmail(String email);
 
-    List<Comment> getCommentsByCompany(MasterCompany company);
+    List<Comment> getCommentsByCompanyEmail(String email);
 
-    void createComment(Comment comment);
+    String createComment(Comment comment);
 
-    void deleteComment(Comment comment);
+    String deleteComment(Long id);
 }

@@ -10,13 +10,13 @@ public interface LocationService {
 
     Location getLocationById(Long id);
 
-    Location getLocationByTask(Task task);
+    Location getLocationByTaskId(Long id);
 
-    List<Location> getLocationsByCategory(Category category);
+    List<Location> getLocationsByCategoryName(String name);
 
-    List<Location> getLocationsByCompany(MasterCompany company);
+    List<Location> getLocationsByCompanyName(String name);
 
-    void createLocation(Location location);
+   String createLocation(Location location);
 
-    void deleteLocation(Location location);
+    String deleteLocation(Long id);
 }

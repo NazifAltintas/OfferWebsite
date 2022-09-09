@@ -10,15 +10,21 @@ public interface TaskService {
 
     Task getTaskById(Long id);
 
-    Task getTaskByOffer(Offer offer);
+    Task getTaskByOfferId(Long id);
 
-    List<Task> getTasksByUser(User user);
+    List<Task> getTasksByUserEmail(String email);
 
-    List<Task> getTasksByCategory(Category category);
+    List<Task> getTasksByCategoryName(String name);
 
-    List<Task> getTasksByLocation(Location location);
+    List<Task> getTasksByLocationName(String name);
 
-    void createAddress(Address address);
+    List<Task> findTasksByContext(String word);
 
-    void deleteAddress(Address address);
+    String createTask(Task task);
+
+    String deleteTask(Long id);
+
+    List<Task> sortTaskByDate();
+
+    List<Task> getTaskByPageNum(int num);
 }

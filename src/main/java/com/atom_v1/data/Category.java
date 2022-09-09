@@ -2,29 +2,60 @@ package com.atom_v1.data;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "task_categories")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
+
+    @Column(nullable = false, unique = true, length = 45)
     private String categoryName;
-    private List<MasterCompany> companies;
+
+    @JoinTable(name = "categories_company",
+            joinColumns = {@JoinColumn(name = "category_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "company_ID")})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Company> companies;
+
+    @JoinTable(name = "category_tasks",
+            joinColumns = {@JoinColumn(name = "category_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "task_ID")})
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Task> tasks;
+
+    @JoinTable(name = "categories_locations",
+            joinColumns = {@JoinColumn(name = "category_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "location_ID")})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Location> locations;
+
+    private String errMsg;
 
     public Category() {
-        this("");
+        this.errMsg = "invalid category name";
     }
 
     public Category(String categoryName) {
-        this(categoryName, new ArrayList<>());
+        this.categoryName = categoryName;
+        this.errMsg = "category is created successfully";
     }
 
-    public Category(String categoryName, List<MasterCompany> companies) {
-        this.categoryName = categoryName;
-        this.companies = companies;
+    public List<Task> getTask() {
+        return tasks;
+    }
+
+    public void setTask(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public String getErrMsg() {
+        return errMsg;
+    }
+
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
     }
 
     public String getCategoryName() {
@@ -35,16 +66,32 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public List<MasterCompany> getCompanies() {
+    public List<Company> getCompanies() {
         return companies;
     }
 
-    public void setCompanies(List<MasterCompany> companies) {
+    public void setCompanies(List<Company> companies) {
         this.companies = companies;
     }
 
     public Long getCategoryId() {
         return categoryId;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public List<Location> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
     }
 
     @Override

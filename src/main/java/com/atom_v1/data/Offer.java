@@ -4,33 +4,47 @@ package com.atom_v1.data;
 import javax.persistence.*;
 import java.util.Date;
 @Entity
-@Table(name = "task_offers")
+
 public class Offer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long offerId;
-    private Task task;
-    private MasterCompany company;
+
+    @Column(nullable = false)
     private Double price;
+
+    @Column
     private Date dateRangeEarliest;
+
+    @Column
     private Date dateRangeLatest;
+
+    @Column
     private Date timeStamp;
 
+    String errMsg;
+
+    @JoinTable(name = "offers_task",
+            joinColumns = {@JoinColumn(name = "offer_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "task_ID")})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Task task;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Company company;
+
+
     public Offer(){
-        this(new Task(),new MasterCompany(),0.0,new Date(),new Date(),new Date());
+        this.errMsg = "invalid offer";
     }
 
-    public Offer(Task task, MasterCompany company, Double price, Date dateRangeEarliest, Date dateRangeLatest) {
-       this(task,company,price,dateRangeEarliest,dateRangeLatest,new Date());
-    }
 
-    public Offer(Task task, MasterCompany company, Double price, Date dateRangeEarliest, Date dateRangeLatest, Date timeStamp) {
-        this.task = task;
-        this.company =company;
+    public Offer(Double price, Date dateRangeEarliest, Date dateRangeLatest) {
         this.price = price;
         this.dateRangeEarliest = dateRangeEarliest;
         this.dateRangeLatest = dateRangeLatest;
-        this.timeStamp = timeStamp;
+        this.errMsg = "offer is created successfully";
     }
 
     public Task getTask() {
@@ -41,11 +55,11 @@ public class Offer {
         this.task = task;
     }
 
-    public MasterCompany getCompany() {
+    public Company getCompany() {
         return company;
     }
 
-    public void setCompany(MasterCompany company) {
+    public void setCompany(Company company) {
         this.company = company;
     }
 

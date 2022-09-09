@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-@Configuration
+//@Configuration
 public class AddressConfig {
-@Bean
-    CommandLineRunner commandLineRunner(AddressRepository addressRepository){
-    return args -> addressRepository.saveAll(List.of( new Address("Erwteenstraat",133,2000,"Antwerpen",new User()),new Address("Fakestreet",111,2000,"Antwerpen",new User())));
-}
+//@Bean
+//    CommandLineRunner commandLineRunner(AddressRepository addressRepository){
+//    return args -> addressRepository.saveAll(List.of( new Address("Erwteenstraat",133,2000,"Antwerpen"),new Address("Fakestreet",111,2000,"Antwerpen")));
+//}
 }

@@ -10,11 +10,11 @@ public interface OfferService {
 
     Offer getOfferById(Long id);
 
-    List<Offer> getOffersByTask(Task task);
+    List<Offer> getOffersByTaskId(Long id);
 
-    List<Offer> getOffersByCompany(MasterCompany company);
+    List<Offer> getOffersByCompanyEmail(String email);
 
-    void createOffer(Offer offer);
+    String createOffer(Offer offer);
 
-    void deleteOffer(Offer offer);
+    String deleteOffer(Long id);
 }
