@@ -10,20 +10,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @Column(nullable = false, unique = true, length = 45)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column(length = 45)
-    private String userName;
 
     @Column(length = 45)
     private String firstName;
 
     @Column(length = 45)
     private String lastName;
+
+    @Column(nullable = false, unique = true, length = 45)
+    private String email;
+
+    @Column(length = 45)
+    private String userName;
+
+    @Column(nullable = false)
+    private String password;
 
     @Column(length = 20)
     private String phoneNumber;

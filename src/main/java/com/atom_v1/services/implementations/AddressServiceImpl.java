@@ -139,6 +139,11 @@ public class AddressServiceImpl implements AddressService {
 
         return addressRepository.save(existingAddressById);
     }
+
+    @Override
+    public Address partiallyUpdateAddress(Long id, Address address) {
+        return null;
+    }
 }
 
 

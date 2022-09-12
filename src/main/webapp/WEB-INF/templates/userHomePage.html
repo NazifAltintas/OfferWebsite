@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>createUser</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <!------ Include the above in your HEAD tag ---------->
+    <link href="../css/registration.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <div class="registration mx-auto d-block w-100">
+        <div class="page-header text-center">
+            <br>
+            <h2>Singel User Page</h2>
+            <br>
+        </div>
+        <form th:action="@{/getUser/fullName}" method="get">
+
+
+            <div class="form-group">
+                <label >Name *</label>
+                <br>
+                [[${#request.userPrincipal.principal.fullName}]]
+            </div>
+
+
+        </form>
+    </div>
+</div>
+</body>
+

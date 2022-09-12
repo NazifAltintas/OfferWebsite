@@ -20,4 +20,6 @@ public interface AddressService {
 
     Address fullyUpdateAddress(Long id, Address newAddress);
 
+    Address  partiallyUpdateAddress(Long id, Address address);
+
 }

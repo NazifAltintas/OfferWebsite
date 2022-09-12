@@ -18,13 +18,11 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    public void configure(HttpSecurity http) throws Exception {
         http.
                 authorizeRequests().
-                antMatchers("/", "index", "/css/*", "js/*").permitAll().
-                anyRequest().
-                authenticated().
-                and().//formLogin().and().
+                antMatchers("/").authenticated().anyRequest().permitAll().
+                and().formLogin().and().
                 httpBasic();//basic authentication :uses username and password for every request
     }
 

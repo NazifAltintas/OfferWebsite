@@ -3,12 +3,13 @@ package com.atom_v1.controller;
 import com.atom_v1.data.Address;
 import com.atom_v1.services.interfaces.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class AddressController {
 
     private AddressService addressService;
@@ -16,6 +17,11 @@ public class AddressController {
     @Autowired
     public AddressController(AddressService addressService){
         this.addressService=addressService;
+    }
+
+    @GetMapping(path = "xxx")
+    public String test(){
+        return "blog";
     }
 
     @GetMapping(path="/getAllAddresses")

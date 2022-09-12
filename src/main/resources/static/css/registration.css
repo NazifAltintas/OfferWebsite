@@ -1,0 +1,11 @@
+body{ color: var(--bs-body-color);
+}
+
+
+@media (min-width:100px){
+    .registration{
+        max-width: 300px;
+    }
+
+
+}
