@@ -2,19 +2,19 @@ package com.atom_v1.data;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "tasks")
+//@Table(name = "tasks")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long taskId;
 
     @Column
-    private String name;
+    private String title;
 
     @Column
     private Double maxBudget;
@@ -23,7 +23,7 @@ public class Task {
     private String details;
 
     @Column
-    private Date timeStamp;
+    private LocalDate timeStamp;
 
     @Column
     private String photoLinks;
@@ -39,9 +39,9 @@ public class Task {
 
     String errMsg;
 
-    @JoinTable(name = "tasks_user",
-            joinColumns = {@JoinColumn(name = "task_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "user_ID")})
+//    @JoinTable(name = "tasks_user",
+//            joinColumns = {@JoinColumn(name = "task_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "user_ID")})
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private User userDetails;
 
@@ -60,7 +60,7 @@ public class Task {
     }
 
     public Task(String name, Double maxBudget, String details, Date dateRangeEarliest, Date dateRangeLatest) {
-        this.name = name;
+        this.title = name;
         this.maxBudget = maxBudget;
         this.details = details;
         this.dateRangeEarliest = dateRangeEarliest;
@@ -68,12 +68,12 @@ public class Task {
         this.errMsg = "task is created successfully";
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String name) {
+        this.title = name;
     }
 
     public Double getMaxBudget() {
@@ -92,11 +92,11 @@ public class Task {
         this.details = details;
     }
 
-    public Date getTimeStamp() {
-        return timeStamp;
+    public LocalDate getTimeStamp() {
+        return LocalDate.now();
     }
 
-    public void setTimeStamp(Date timeStamp) {
+    public void setTimeStamp(LocalDate timeStamp) {
         this.timeStamp = timeStamp;
     }
 
@@ -182,7 +182,7 @@ public class Task {
                 " in " + location +
                 " between " + dateRangeEarliest +
                 " and " + dateRangeLatest +
-                " task: " + name +
+                " task: " + title +
                 " from " + userDetails;
     }
 }

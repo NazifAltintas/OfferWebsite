@@ -42,46 +42,30 @@
 
             <br>
         </div>
-        <form th:action="@{/createdNewUser}" method="post">
-
-
-            <div class="form-group">
-                <label for="exampleInputFirstName">First Name *</label>
-                <input name="firstName" type="text" class="form-control" placeholder="text" id="exampleInputFirstName">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputLastName">Last Name *</label>
-                <input name="lastName" type="text" class="form-control" placeholder="text" id="exampleInputLastName">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail">Email *</label>
-                <input name="email" type="text" class="form-control" placeholder="text" id="exampleInputEmail">
-            </div>
+        <form th:action="@{/addAddress}" method="post">
 
             <div class="form-group">
-                <label for="exampleInputUserName">User Name *</label>
-                <input name="userName" type="text" class="form-control" placeholder="text" id="exampleInputUserName">
+                <label for="exampleInputCity">City *</label>
+                <input name="city" type="text" class="form-control" placeholder="text" id="exampleInputCity">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword">Password *</label>
-                <input name="password" type="text" class="form-control" placeholder="text/integer"
-                       id="exampleInputPassword">
+                <label for="exampleInputStreet">Street *</label>
+                <input name="street" type="text" class="form-control" placeholder="integer" id="exampleInputStreet">
             </div>
-
             <div class="form-group">
-                <label for="exampleInputPhoneNumber">Phone Number</label>
-                <input name="phoneNumber" type="text" class="form-control" placeholder="text/integer"
-                       id="exampleInputPhoneNumber">
+                <label for="exampleInputHouseNr">House Number *</label>
+                <input name="houseNr" type="number" class="form-control" placeholder="integer" id="exampleInputHouseNr">
             </div>
-
             <div class="form-group">
-                <label for="exampleInputPhotoLink">Downland User Photo</label>
-                <input name="photoLink" type="text" class="form-control" placeholder="text/integer"
-                       id="exampleInputPhotoLink">
+                <label for="exampleInputHouseBox">Box</label>
+                <input name="box" type="number" class="form-control" placeholder="integer" id="exampleInputHouseBox">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputZIP">ZIP *</label>
+                <input name="ZIP" type="number" class="form-control" placeholder="integer" id="exampleInputZIP">
             </div>
 
-
-            <input type="submit" value="Add Your Address">
+            <input type="submit" value="Create Account">
 
             <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="http://localhost:8088/login"
                                                                                     class="fw-bold text-body"><u>Login
@@ -94,4 +78,3 @@
     </div>
 </div>
 </body>
-

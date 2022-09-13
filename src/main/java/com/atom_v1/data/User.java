@@ -11,22 +11,22 @@ public class User {
     private Long userId;
 
 
-    @Column(length = 45)
+    @Column
     private String firstName;
 
-    @Column(length = 45)
+    @Column
     private String lastName;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column
     private String email;
 
-    @Column(length = 45)
+    @Column
     private String userName;
 
-    @Column(nullable = false)
+    @Column
     private String password;
 
-    @Column(length = 20)
+    @Column
     private String phoneNumber;
 
     @Column()
@@ -34,9 +34,9 @@ public class User {
 
     String errMsg;
 
-    @JoinTable(name = "user_addresses",
-            joinColumns = {@JoinColumn(name = "user_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "address_ID")})
+//    @JoinTable(name = "user_addresses",
+//            joinColumns = {@JoinColumn(name = "user_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "address_ID")})
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Address> addresses;
 

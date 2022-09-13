@@ -11,10 +11,10 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
 
-    @Column(length = 300)
+    @Column
     private String content;
 
-    @Column(length = 1)
+    @Column
     private int like;
 
     @Column
@@ -22,15 +22,15 @@ public class Comment {
 
     String errMsg;
 
-    @JoinTable(name = "comments_user",
-            joinColumns = {@JoinColumn(name = "comment_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "user_ID")})
+//    @JoinTable(name = "comments_user",
+//            joinColumns = {@JoinColumn(name = "comment_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "user_ID")})
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private User user;
 
-    @JoinTable(name = "comments_company",
-            joinColumns = {@JoinColumn(name = "comment_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "company_ID")})
+//    @JoinTable(name = "comments_company",
+//            joinColumns = {@JoinColumn(name = "comment_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "company_ID")})
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Company company;
 

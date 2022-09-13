@@ -10,24 +10,27 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column
     private String categoryName;
 
-    @JoinTable(name = "categories_company",
-            joinColumns = {@JoinColumn(name = "category_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "company_ID")})
+    @Column
+    String photoLink;
+
+//    @JoinTable(name = "categories_company",
+//            joinColumns = {@JoinColumn(name = "category_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "company_ID")})
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Company> companies;
 
-    @JoinTable(name = "category_tasks",
-            joinColumns = {@JoinColumn(name = "category_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "task_ID")})
+//    @JoinTable(name = "category_tasks",
+//            joinColumns = {@JoinColumn(name = "category_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "task_ID")})
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Task> tasks;
 
-    @JoinTable(name = "categories_locations",
-            joinColumns = {@JoinColumn(name = "category_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "location_ID")})
+//    @JoinTable(name = "categories_locations",
+//            joinColumns = {@JoinColumn(name = "category_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "location_ID")})
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Location> locations;
 
@@ -92,6 +95,14 @@ public class Category {
 
     public void setLocations(List<Location> locations) {
         this.locations = locations;
+    }
+
+    public String getPhotoLink() {
+        return photoLink;
+    }
+
+    public void setPhotoLink(String photoLink) {
+        this.photoLink = photoLink;
     }
 
     @Override

@@ -12,7 +12,7 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long locationId;
 
-    @Column(nullable = false, unique = true, length = 15)
+    @Column
     private String locationName;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -21,9 +21,9 @@ public class Location {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Category> categories;
 
-    @JoinTable(name = "location_tasks",
-            joinColumns = {@JoinColumn(name = "location_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "task_ID")})
+//    @JoinTable(name = "location_tasks",
+//            joinColumns = {@JoinColumn(name = "location_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "task_ID")})
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Task> tasks;
 

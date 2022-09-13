@@ -14,13 +14,13 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long companyId;
 
-    @Column(nullable = false, unique = true, length = 100)
+    @Column
     private String companyName;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column
     private String companyEmail;
 
-    @Column(nullable = false, length = 20)
+    @Column
     private String companyPhoneNumber;
 
     @Column
@@ -43,15 +43,15 @@ public class Company {
 
     String errMsg;
 
-    @JoinTable(name = "company_user",
-            joinColumns = {@JoinColumn(name = "company_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "user_ID")})
+//    @JoinTable(name = "company_user",
+//            joinColumns = {@JoinColumn(name = "company_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "user_ID")})
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private User user;
 
-    @JoinTable(name = "company_addresses",
-            joinColumns = {@JoinColumn(name = "company_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "address_ID")})
+//    @JoinTable(name = "company_addresses",
+//            joinColumns = {@JoinColumn(name = "company_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "address_ID")})
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Address> addresses;
 
@@ -59,18 +59,18 @@ public class Company {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Category> categories;
 
-    @JoinTable(name = "company_locations",
-            joinColumns = {@JoinColumn(name = "company_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "location_ID")})
+//    @JoinTable(name = "company_locations",
+//            joinColumns = {@JoinColumn(name = "company_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "location_ID")})
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Location> locations;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments;
 
-    @JoinTable(name = "company_offers",
-            joinColumns = {@JoinColumn(name = "company_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "offer_ID")})
+//    @JoinTable(name = "company_offers",
+//            joinColumns = {@JoinColumn(name = "company_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "offer_ID")})
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Offer> offers;
 

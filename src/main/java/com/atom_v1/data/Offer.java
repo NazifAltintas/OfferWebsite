@@ -11,7 +11,7 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long offerId;
 
-    @Column(nullable = false)
+    @Column
     private Double price;
 
     @Column
@@ -25,9 +25,9 @@ public class Offer {
 
     String errMsg;
 
-    @JoinTable(name = "offers_task",
-            joinColumns = {@JoinColumn(name = "offer_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "task_ID")})
+//    @JoinTable(name = "offers_task",
+//            joinColumns = {@JoinColumn(name = "offer_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "task_ID")})
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Task task;
 
