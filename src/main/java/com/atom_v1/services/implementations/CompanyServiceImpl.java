@@ -69,7 +69,7 @@ public class CompanyServiceImpl implements CompanyService {
         for (Company company : companies) {
             categories = company.getCategories();
             for (Category category : categories)
-                if (category.getCategoryId() == id) {
+                if (category.getCategoryId()==id) {
                     companyList.add(company);
                 }
         }
@@ -85,7 +85,7 @@ public class CompanyServiceImpl implements CompanyService {
         for (Company company : companies) {
             locations = company.getLocations();
             for (Location location : locations)
-                if (location.getLocationId() == id) {
+                if (location.getLocationId()==id) {
                     companyList.add(company);
                 }
         }

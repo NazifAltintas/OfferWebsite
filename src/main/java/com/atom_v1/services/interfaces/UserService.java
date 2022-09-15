@@ -10,11 +10,13 @@ public interface UserService {
 
     User getUserById(Long id);
 
+    User getUserByEmail(String email);
+
     User getUserByCommentId(Long id);
 
     User getUserByTaskId(Long id);
 
-    User getUserByCompanyEmail(String email);
+    User getUserByCompanyName(String name);
 
     String createUser(User user);
 

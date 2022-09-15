@@ -3,6 +3,7 @@ package com.atom_v1.data;
 import javax.persistence.*;
 import java.util.List;
 
+
 @Entity
 
 public class User {
@@ -16,6 +17,8 @@ public class User {
 
     @Column
     private String lastName;
+
+    private String fullName;
 
     @Column
     private String email;
@@ -34,13 +37,13 @@ public class User {
 
     String errMsg;
 
-//    @JoinTable(name = "user_addresses",
+    //    @JoinTable(name = "user_addresses",
 //            joinColumns = {@JoinColumn(name = "user_ID")},
 //            inverseJoinColumns = {@JoinColumn(name = "address_ID")})
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Address> addresses;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Comment> comments;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -51,7 +54,7 @@ public class User {
 
 
     public User() {
-
+        fullName = getFullName();
         this.errMsg = "invalid user";
     }
 
@@ -180,6 +183,10 @@ public class User {
 
     public void setPhotoLink(String photoLink) {
         this.photoLink = photoLink;
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 
     @Override

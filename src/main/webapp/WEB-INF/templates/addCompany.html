@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="copyright" content="MACode ID, https://macodeid.com/">
+
+    <title>Atom Account</title>
+    <link rel="stylesheet" href="../css/registrationp.css"/>
+
+    <link rel="stylesheet" href="../css/maicons.css">
+
+    <link rel="stylesheet" href="../css/bootstrap.css">
+
+    <link rel="stylesheet" href="../vendor/animate/animate.css">
+
+    <link rel="stylesheet" href="../css/theme.css">
+
+</head>
+<body>
+
+<!-- Back to top button -->
+<div class="back-to-top"></div>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky" data-offset="300">
+        <div class="container">
+            <a href="/" class="navbar-brand">Atom<span class="text-primary"> V1...</span></a>
+
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapsed" id="navbarContent">
+
+            </div>
+
+        </div>
+    </nav>
+
+</header>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+            <h2 class="h3 mb-4 page-title">Add Your Company</h2>
+            <div class="my-4">
+                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                           aria-controls="home" aria-selected="false">Profile</a>
+                    </li>
+                </ul>
+                <form th:action="@{/createCompany}" method="post">
+                    <div class="row mt-5 align-items-center">
+                        <div class="col-md-3 text-center mb-5">
+
+                        </div>
+                        <div class="col">
+                            <div class="row align-items-center">
+                                <div class="col-md-7">
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-7">
+
+                                </div>
+                                <div class="col">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4"/>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="firstname">Company Name</label>
+                            <input name="firstName" type="text" id="firstname" class="form-control"
+                                   placeholder=""/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail4">Company Email</label>
+                        <input name="companyEmail" type="email" class="form-control" id="inputEmail4"
+                               placeholder="example@mail.com"/>
+                    </div>
+                    <div class="media-body ml-4">
+                        <label class="btn btn-outline-primary">
+                            Upload new photo
+                            <input type="file" class="account-settings-fileinput">
+                        </label> &nbsp;
+                        <button type="button" class="btn btn-default md-btn-flat">Reset</button>
+
+                        <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputReference5">References</label>
+                        <input name="reference" type="text" class="form-control" id="inputReference5" placeholder=""/>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputcer5">Certificates</label>
+                        <input name="certificates" type="text" class="form-control" id="inputcer5" placeholder=""/>
+                    </div>
+                    <div class="form-group">
+
+                        <input name="companyPhoneNumber" type="tel" class="form-control" id="inputPhoneNumber"
+                               placeholder="+32 123 45 67 89"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputdetails"> Company Details</label>
+
+                        <input cols="40" rows="10" name="details" type="tel" class="form-control" id="inputdetails"/>
+
+                    </div>
+                    &nbsp;
+                        <h4>Categories:</h4>
+                        <div class="form-group " th:each="category:${categories}">
+
+                            <input type="checkbox" id="inputCategory5" name=categories value="">
+                            <label for="inputCategory5" th:text="${category.categoryName}"></label>
+                        </div>
+                        <br>
+                        <h4>Locations:</h4>
+                        <div class="form-group " th:each="location:${locations}">
+                            <input type="checkbox" id="inputLocation5" name=locations value="">
+                            <label for="inputCategory5" th:text=" ${location.locationName}"><br></label>
+                        </div>
+
+
+                    <hr class="my-4"/>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="inputfLink5">Facebook Link</label>
+                                <input name="facebookLink" type="text" class="form-control" id="inputfLink5"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputtLink5">Twitter Link</label>
+                                <input name="twitterLink" type="text" class="form-control" id="inputtLink5"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputlLink5">Linkedin Link</label>
+                                <input name="linkedinLink" type="text" class="form-control" id="inputlLink5"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputyLink5">Youtube Link</label>
+                                <input name="youtubeLink" type="text" class="form-control" id="inputyLink5"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputiLink5">Instagram Link</label>
+                                <input name="instagramLink" type="text" class="form-control" id="inputiLink5"/>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+                    <input type="submit" value="Add Company">
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<br><br><br><br><br>
+<footer
+        class="page-footer bg-image"
+        style="background-image: url(static/img/bg_pattern.svg)"
+>
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-3 py-3">
+                <h3>ATOM V1</h3>
+                <p>
+                    Bidding website in gardening in Belgium
+                </p>
+
+                <div class="social-media-button">
+                    <a href="https://www.linkedin.com/in/nazif-altintas-231367245/"><span
+                            class="mai-logo-linkedin"></span></a>
+                    <a href="https://github.com/NazifAltintas"><span class="mai-logo-github"></span></a>
+                    <a href="#"><span class="mai-logo-google-plus-g"></span></a>
+                    <a href="#"><span class="mai-logo-instagram"></span></a>
+                    <a href="#"><span class="mai-logo-youtube"></span></a>
+                </div>
+            </div>
+            <div class="col-lg-3 py-3">
+                <h5>Company</h5>
+                <ul class="footer-menu">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Career</a></li>
+                    <li><a href="#">Advertise</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Help & Support</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 py-3">
+                <h5>Contact Us</h5>
+                <p>Fake Straat 1, 2100 Antwerp, BELGIUM</p>
+                <a href="#" class="footer-link">+00 1122 3344 5566</a>
+                <a href="#" class="footer-link">atom@temporary.com</a>
+            </div>
+            <div class="col-lg-3 py-3">
+                <h5>Newsletter</h5>
+                <p>Get updates, news or events on your mail.</p>
+                <form action="#">
+                    <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Enter your email.."
+                    />
+                    <button type="submit" class="btn btn-success btn-block mt-2">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <p class="text-center" id="copyright">
+            Copyright &copy; 2022. This template design and develop by
+            <a href="https://macodeid.com/" target="_blank">Nazif Altintas</a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

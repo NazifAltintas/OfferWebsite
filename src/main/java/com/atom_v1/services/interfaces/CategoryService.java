@@ -12,9 +12,9 @@ public interface CategoryService {
 
     Category getCategoryByTaskId(Long id);
 
-    List<Category> getCategoriesByLocationName(String locationName);
+    List<Category> getCategoriesByLocationId(Long id);
 
-    List<Category> getCategoriesByCompanyName(String companyName);
+    List<Category> getCategoriesByCompanyId(Long id);
 
     String createCategory(Category category);
 

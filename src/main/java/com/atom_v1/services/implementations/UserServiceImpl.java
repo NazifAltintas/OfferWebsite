@@ -38,6 +38,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserByEmail(String email) {
+        if (userRepository.findUserByEmail(email).isPresent()) {
+            return userRepository.findUserByEmail(email).get();
+        }
+        return new User();
+    }
+
+    @Override
     public User getUserByCommentId(Long id) {
         if (commentRepository.findById(id).isPresent()) {
             Comment comment = commentRepository.findById(id).get();
@@ -56,12 +64,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByCompanyEmail(String email) {
+    public User getUserByCompanyName(String name) {
         List<Company> companies = companyRepository.findAll();
         User user;
         for (Company company : companies) {
             user = company.getUser();
-            if (user.getEmail().equalsIgnoreCase(email)) {
+            if (user.getUserName().equalsIgnoreCase(name)) {
                 return user;
             }
         }

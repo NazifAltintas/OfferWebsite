@@ -2,6 +2,7 @@ package com.atom_v1.data;
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -15,10 +16,16 @@ public class Comment {
     private String content;
 
     @Column
-    private int like;
+    private Integer like;
 
     @Column
-    private Date timeStamp;
+    private String authorEmail;
+
+    @Column
+    private String authorUserName;
+
+    @Column
+    private LocalDate timeStamp;
 
     String errMsg;
 
@@ -35,6 +42,7 @@ public class Comment {
     private Company company;
 
     public Comment() {
+        this.timeStamp=getTimeStamp();
         this.errMsg = "invalid comment";
     }
 
@@ -47,6 +55,22 @@ public class Comment {
         this.content = content;
         this.like = like;
         this.errMsg = "comment is created successfully";
+    }
+
+    public String getAuthorEmail() {
+        return authorEmail;
+    }
+
+    public void setAuthorEmail(String authorEmail) {
+        this.authorEmail = authorEmail;
+    }
+
+    public String getAuthorUserName() {
+        return authorUserName;
+    }
+
+    public void setAuthorUserName(String authorUserName) {
+        this.authorUserName = authorUserName;
     }
 
     public User getUser() {
@@ -81,11 +105,11 @@ public class Comment {
         this.like = like;
     }
 
-    public Date getTimeStamp() {
-        return timeStamp;
+    public LocalDate getTimeStamp() {
+        return LocalDate.now();
     }
 
-    public void setTimeStamp(Date timeStamp) {
+    public void setTimeStamp(LocalDate timeStamp) {
         this.timeStamp = timeStamp;
     }
 

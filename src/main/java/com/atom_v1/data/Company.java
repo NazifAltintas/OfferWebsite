@@ -21,6 +21,20 @@ public class Company {
     private String companyEmail;
 
     @Column
+    private String details;
+    @Column
+    private String facebookLink;
+    @Column
+    private String twitterLink;
+    @Column
+    private String linkedinLink;
+    @Column
+    private String instagramLink;
+    @Column
+    private String youtubeLink;
+
+
+    @Column
     private String companyPhoneNumber;
 
     @Column
@@ -30,7 +44,8 @@ public class Company {
     private String certificates;
 
     @Column
-    private Double score;
+    private static Double score;
+
 
     @Column
     private String photoLink;
@@ -39,12 +54,13 @@ public class Company {
     private LocalDate participation;
 
     @Column
-    private Integer period;
+    private Integer cperiod;
 
     String errMsg;
 
 //    @JoinTable(name = "company_user",
 //            joinColumns = {@JoinColumn(name = "company_ID")},
+//
 //            inverseJoinColumns = {@JoinColumn(name = "user_ID")})
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private User user;
@@ -52,31 +68,34 @@ public class Company {
 //    @JoinTable(name = "company_addresses",
 //            joinColumns = {@JoinColumn(name = "company_ID")},
 //            inverseJoinColumns = {@JoinColumn(name = "address_ID")})
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "company",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Address> addresses;
 
-
+    @JoinTable(name = "categories_company")
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Category> categories;
 
-//    @JoinTable(name = "company_locations",
-//            joinColumns = {@JoinColumn(name = "company_ID")},
-//            inverseJoinColumns = {@JoinColumn(name = "location_ID")})
+    @JoinTable(name = "company_locations",
+            joinColumns = {@JoinColumn(name = "company_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "location_ID")})
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Location> locations;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "company",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments;
 
 //    @JoinTable(name = "company_offers",
 //            joinColumns = {@JoinColumn(name = "company_ID")},
 //            inverseJoinColumns = {@JoinColumn(name = "offer_ID")})
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "company",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Offer> offers;
 
 
     public Company() {
         this.errMsg = "invalid company creation";
+        this.cperiod = getCperiod();
+
     }
 
     public Company(String companyName, String companyEmail, String companyPhoneNumber, List<Address> addresses) {
@@ -84,13 +103,17 @@ public class Company {
         this.companyEmail = companyEmail;
         this.companyPhoneNumber = companyPhoneNumber;
         this.addresses = addresses;
-        this.period = getPeriod();
+        this.cperiod = getCperiod();
         this.errMsg = "company is created successfully";
     }
 
-    public Integer getPeriod() {
+    public Integer getCperiod() {
         if (this.participation == null) return 0;
         return Period.between(this.participation, LocalDate.now()).getYears();
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 
     public Long getCompanyId() {
@@ -139,6 +162,8 @@ public class Company {
     }
 
     public Double getScore() {
+
+
         return score;
     }
 
@@ -162,8 +187,8 @@ public class Company {
         this.participation = participation;
     }
 
-    public void setPeriod(Integer period) {
-        this.period = period;
+    public void setCperiod(Integer period) {
+        this.cperiod = period;
     }
 
     public String getErrMsg() {
@@ -220,6 +245,55 @@ public class Company {
 
     public void setOffers(List<Offer> offers) {
         this.offers = offers;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
+    public String getFacebookLink() {
+        return facebookLink;
+    }
+
+    public void setFacebookLink(String facebookLink) {
+        this.facebookLink = facebookLink;
+    }
+
+    public String getTwitterLink() {
+        return twitterLink;
+    }
+
+    public void setTwitterLink(String twitterLink) {
+        this.twitterLink = twitterLink;
+    }
+
+    public String getLinkedinLink() {
+        return linkedinLink;
+    }
+
+    public void setLinkedinLink(String linkedinLink) {
+        this.linkedinLink = linkedinLink;
+    }
+
+
+    public String getInstagramLink() {
+        return instagramLink;
+    }
+
+    public void setInstagramLink(String instagramLink) {
+        this.instagramLink = instagramLink;
+    }
+
+    public String getYoutubeLink() {
+        return youtubeLink;
+    }
+
+    public void setYoutubeLink(String youtubeLink) {
+        this.youtubeLink = youtubeLink;
     }
 
     @Override

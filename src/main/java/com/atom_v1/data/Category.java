@@ -16,21 +16,21 @@ public class Category {
     @Column
     String photoLink;
 
-//    @JoinTable(name = "categories_company",
-//            joinColumns = {@JoinColumn(name = "category_ID")},
-//            inverseJoinColumns = {@JoinColumn(name = "company_ID")})
+    @JoinTable(name = "categories_company",
+            joinColumns = {@JoinColumn(name = "category_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "company_ID")})
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Company> companies;
 
 //    @JoinTable(name = "category_tasks",
 //            joinColumns = {@JoinColumn(name = "category_ID")},
 //            inverseJoinColumns = {@JoinColumn(name = "task_ID")})
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Task> tasks;
 
-//    @JoinTable(name = "categories_locations",
-//            joinColumns = {@JoinColumn(name = "category_ID")},
-//            inverseJoinColumns = {@JoinColumn(name = "location_ID")})
+    @JoinTable(name = "categories_locations",
+         joinColumns = {@JoinColumn(name = "category_ID")},
+           inverseJoinColumns = {@JoinColumn(name = "location_ID")})
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Location> locations;
 

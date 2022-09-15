@@ -44,7 +44,7 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    public List<Location> getLocationsByCategoryName(String name) {
+    public List<Location> getLocationsByCategoryId(Long id) {
         List<Location> locationList, locations;
         locationList = new ArrayList<>();
         locations = locationRepository.findAll();
@@ -52,7 +52,7 @@ public class LocationServiceImpl implements LocationService {
         for (Location location : locations) {
             categories = location.getCategories();
             for (Category category : categories)
-                if (category.getCategoryName().equalsIgnoreCase(name)) {
+                if (category.getCategoryId()==id) {
                     locationList.add(location);
                 }
         }
@@ -60,7 +60,7 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    public List<Location> getLocationsByCompanyName(String name) {
+    public List<Location> getLocationsByCompanyId(Long id) {
         List<Location> locationList, locations;
         locationList = new ArrayList<>();
         locations = locationRepository.findAll();
@@ -68,7 +68,7 @@ public class LocationServiceImpl implements LocationService {
         for (Location location : locations) {
             companies = location.getCompanies();
             for (Company company : companies)
-                if (company.getCompanyName().equalsIgnoreCase(name)) {
+                if (company.getCompanyId()==id) {
                     locationList.add(location);
                 }
         }

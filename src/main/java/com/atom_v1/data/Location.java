@@ -15,16 +15,18 @@ public class Location {
     @Column
     private String locationName;
 
+    @JoinTable(name = "company_locations")
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Company> companies;
 
+    @JoinTable(name = "categories_locations")
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Category> categories;
 
 //    @JoinTable(name = "location_tasks",
 //            joinColumns = {@JoinColumn(name = "location_ID")},
 //            inverseJoinColumns = {@JoinColumn(name = "task_ID")})
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "location",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Task> tasks;
 
     String errMsg;

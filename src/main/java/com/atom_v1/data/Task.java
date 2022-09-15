@@ -45,7 +45,7 @@ public class Task {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private User userDetails;
 
-    @OneToMany( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Offer> offers;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

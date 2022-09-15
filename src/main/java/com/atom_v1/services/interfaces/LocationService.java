@@ -12,9 +12,9 @@ public interface LocationService {
 
     Location getLocationByTaskId(Long id);
 
-    List<Location> getLocationsByCategoryName(String name);
+    List<Location> getLocationsByCategoryId(Long id);
 
-    List<Location> getLocationsByCompanyName(String name);
+    List<Location> getLocationsByCompanyId(Long id);
 
    String createLocation(Location location);
 

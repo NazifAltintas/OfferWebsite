@@ -50,14 +50,14 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> getCommentsByCompanyEmail(String email) {
+    public List<Comment> getCommentsByCompanyId(Long id) {
         List<Comment> commentList, comments;
         comments = commentRepository.findAll();
         commentList= new ArrayList<>();
-        Company companyOfEmail;
+        Company companyOfId;
         for (Comment comment : comments) {
-            companyOfEmail= comment.getCompany();
-            if (companyOfEmail.getCompanyEmail().equals(email)) {
+            companyOfId= comment.getCompany();
+            if (companyOfId.getCompanyId()==id) {
                 commentList.add(comment);
             }
         }

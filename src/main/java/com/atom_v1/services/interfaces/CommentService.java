@@ -12,7 +12,7 @@ public interface CommentService {
 
     List<Comment> getCommentsByUserEmail(String email);
 
-    List<Comment> getCommentsByCompanyEmail(String email);
+    List<Comment> getCommentsByCompanyId(Long id);
 
     String createComment(Comment comment);
 

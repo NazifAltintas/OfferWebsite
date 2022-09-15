@@ -47,7 +47,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> getCategoriesByLocationName(String locationName) {
+    public List<Category> getCategoriesByLocationId(Long id) {
         List<Category> categoryList, categories;
         categoryList = new ArrayList<>();
         categories = categoryRepository.findAll();
@@ -55,7 +55,7 @@ public class CategoryServiceImpl implements CategoryService {
         for (Category category : categories) {
             locations = category.getLocations();
             for (Location location : locations)
-                if (location.getLocationName().equalsIgnoreCase(locationName)) {
+                if (location.getLocationId()==id) {
                     categoryList.add(category);
                 }
         }
@@ -64,7 +64,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 
     @Override
-    public List<Category> getCategoriesByCompanyName(String name) {
+    public List<Category> getCategoriesByCompanyId(Long id) {
         List<Category> categoryList, categories;
         categoryList = new ArrayList<>();
         categories = categoryRepository.findAll();
@@ -72,7 +72,7 @@ public class CategoryServiceImpl implements CategoryService {
         for (Category category : categories) {
             companies= category.getCompanies();
             for (Company company : companies)
-                if (company.getCompanyName().equalsIgnoreCase(name)) {
+                if (company.getCompanyId()==id) {
                     categoryList.add(category);
                 }
         }

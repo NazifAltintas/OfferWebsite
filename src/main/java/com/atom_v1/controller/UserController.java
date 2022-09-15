@@ -28,13 +28,6 @@ public class UserController {
     }
 
 
-    @GetMapping("/addUserForm")
-    public String showForm(Model model) {
-
-        model.addAttribute("user", new User());
-
-        return "registrationPage";
-    }
 
     @PostMapping("/createdNewUser")
     public String createUser(@ModelAttribute("user") User user) {
