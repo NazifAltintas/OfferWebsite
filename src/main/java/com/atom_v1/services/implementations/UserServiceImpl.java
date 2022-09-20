@@ -65,16 +65,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByCompanyName(String name) {
-        List<Company> companies = companyRepository.findAll();
-        User user;
-        for (Company company : companies) {
-            user = company.getUser();
-            if (user.getUserName().equalsIgnoreCase(name)) {
-                return user;
-            }
-        }
-        return new User();
+        return null;
     }
+
 
     @Override
     public String createUser(User user) {

@@ -75,13 +75,20 @@ public class PagesController {
 
         return "registrationPages";
     }
+
     @GetMapping(path = "/addressForm")
     public String addressForm(Model model) {
 
         return "addAddress";
     }
 
-
+    @GetMapping(path = "taskPage")
+    public String taskPage(Model model) {
+        model.addAttribute("tasks", taskService.getAllTasks());
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("locations", locationService.getAllLocations());
+        return "taskPage";
+    }
 
 
     //########################### CATEGORY  ###############################################
@@ -136,6 +143,11 @@ public class PagesController {
     @GetMapping("makeLocation")
     public String makeLocation() {
         return "addLocation";
+    }
+
+    @GetMapping("indexmaster")
+    public String indexmasterPage() {
+        return "indexmaster";
     }
 
     @PostMapping("createLocation")
@@ -261,8 +273,9 @@ public class PagesController {
     @PostMapping("createCompany")
     public String createCompany(@ModelAttribute("company") Company company) {
         companyService.createCompany(company);
-        return "redirect:companies";
+        return "redirect:indexmaster";
     }
+
 
     //########################### COMMENT  ###############################################
     @GetMapping("comment/{id}")

@@ -21,7 +21,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.
                 authorizeRequests().
-                antMatchers("/").authenticated().anyRequest().permitAll().
+                antMatchers("/tasks","/offer").authenticated().anyRequest().permitAll().
                 and().formLogin().and().
                 httpBasic();//basic authentication :uses username and password for every request
     }
